@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ book['tytul'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Powrót do katalogu</a>
+    <div class="product-detail-container">
+        <img src="{{ book['img_url'] }}" alt="okładka" class="cover-large">
+        <div class="product-detail-info">
+            <h1>{{ book['tytul'] }}</h1>
+            <div class="price">{{ book['cena'] }} £</div>
+            <div>Ocena: {{ book['ocena'] }}</div>
+            <div>Dostępność: <b>{{ "Tak" if book['dostepnosc'] else "Nie" }}</b></div>
+            <div class="desc">{{ book['opis'] }}</div>
+            <a href="{{ book['link'] }}" target="_blank" class="details-link">Zobacz na books.toscrape.com</a>
+        </div>
+    </div>
+</body>
+</html>

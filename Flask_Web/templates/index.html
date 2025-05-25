@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>Katalog książek</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Katalog książek</h1>
+    <form method="get" class="filter-form">
+        <input type="text" name="q" placeholder="Szukaj po tytule" value="{{ q }}">
+      <select name="ocena">
+    <option value="">Wszystkie oceny</option>
+    <option value="One" {% if ocena=="One" %}selected{% endif %}>1</option>
+    <option value="Two" {% if ocena=="Two" %}selected{% endif %}>2</option>
+    <option value="Three" {% if ocena=="Three" %}selected{% endif %}>3</option>
+    <option value="Four" {% if ocena=="Four" %}selected{% endif %}>4</option>
+    <option value="Five" {% if ocena=="Five" %}selected{% endif %}>5</option>
+</select>
+
+        <label>
+            <input type="checkbox" name="dostepne" {% if tylko_dostepne %}checked{% endif %}>
+            Tylko dostępne
+        </label>
+        <button type="submit">Filtruj</button>
+    </form>
+    <div class="cards">
+    {% for book in books %}
+        <div class="card">
+            <img src="{{ book['img_url'] }}" alt="okładka" class="cover">
+            <h2>{{ book['tytul'] }}</h2>
+            <div class="price">{{ book['cena'] }} £</div>
+            <div class="stars">Ocena: {{ book['ocena'] }}</div>
+            <div class="stock">Dostępność: <b>{{ "Tak" if book['dostepnosc'] else "Nie" }}</b></div>
+            <div class="desc">{{ book['opis'][:100] }}{% if book['opis']|length > 100 %}...{% endif %}</div>
+            <a href="{{ url_for('book', book_id=book['book_id']) }}" class="details-link">Szczegóły</a>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

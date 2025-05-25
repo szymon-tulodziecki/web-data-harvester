@@ -1,1 +1,6 @@
 venv/
+Flask_Web/app.cpython-312*
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
