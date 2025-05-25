@@ -12,18 +12,6 @@ Aplikacja do asynchronicznego scrapowania, selekcjonowania i prezentacji danych 
 
 ---
 
-## 📑 Spis treści
-
-- [Opis projektu](#opis-projektu)
-- [Technologie](#technologie)
-- [Struktura katalogów](#struktura-katalogów)
-- [Szybki start](#szybki-start)
-- [Główne pliki](#główne-pliki)
-- [Zrzuty ekranu](#zrzuty-ekranu)
-- [Wnioski techniczne](#wnioski-techniczne)
-
----
-
 ## 🗂️ Opis projektu
 
 Web Data Harvester to aplikacja, która pobiera, selekcjonuje i prezentuje dane (tytuł, cena, ocena, dostępność, opis, okładka) z serwisu [books.toscrape.com](https://books.toscrape.com/). System składa się z trzech kontenerów Docker: asynchronicznego scrapera, aplikacji webowej (Flask) oraz bazy danych Redis. Wszystkie komponenty są zarządzane przez `docker-compose`.
