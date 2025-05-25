@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, url_for
 import redis
 import json
+import os
 
 app = Flask(__name__)
-r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+
+REDIS_HOST = os.environ.get("REDIS_HOST", "redis")
+r = redis.Redis(host=REDIS_HOST, port=6379, db=0, decode_responses=True)
 
 @app.route("/")
 def index():

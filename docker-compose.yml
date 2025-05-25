@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  scraper:
+    build: ./scraper
+    container_name: scraper
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+
+  web:
+    build: ./web
+    container_name: flask_web
+    depends_on:
+      - redis
+    environment:
+      - FLASK_APP=app.py
+      - REDIS_HOST=redis
+    ports:
+      - "5000:5000"

@@ -3,12 +3,14 @@ import aiohttp
 from bs4 import BeautifulSoup
 import redis
 import json
+import os
 
 BASE_URL = "https://books.toscrape.com/catalogue/page-{}.html"
 
 class Storage:
     def __init__(self):
-        self.redis = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+        REDIS_HOST = os.environ.get("REDIS_HOST", "redis")
+        self.redis = redis.Redis(host=REDIS_HOST, port=6379, db=0, decode_responses=True)
 
     def save(self, book):
         key = f"books:{book['link']}"
